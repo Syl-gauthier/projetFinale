@@ -24,7 +24,7 @@ public class Main {
 		}
 		
 		System.out.println("Connected as:" + admin.getLogin());
-		System.out.println("Nombre de cas à ajouter:");
+		System.out.println("Nombre de cas a ajouter:");
 		int nbrCas = sc.nextInt();
 		sc.nextLine();
 		ListCas lc = new ListCas();

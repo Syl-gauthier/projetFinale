@@ -21,12 +21,12 @@ public class CasTest {
 	}
 	
 	@Test public void testIncrement() {
-		// deux cas crée a la suit on deux id qui se suivent
+		// deux cas cree a la suit on deux id qui se suivent
 		assertEquals(1, c2.getId()-c1.getId());
 	}
 	
 	@Test public void testNom()  {
-		// le nom est constitué de caractére alphabetique et de tiret et contient un unique espace
+		// le nom est constitue de caractere alphabetique et de tiret et contient un unique espace
 		assertTrue(Cas.validateNom("a b"));
 		assertTrue(Cas.validateNom("AbAT-Asssa qwertyui"));
 		assertTrue(Cas.validateNom("M-Q-A A-E-rrrr"));
@@ -42,7 +42,7 @@ public class CasTest {
 	}
 	
 	@Test public void testCodePostal() {
-		//code postal constitué de 4 ou 5 chiffre
+		//code postal constitue de 4 ou 5 chiffre
 		assertTrue(Cas.validateCodePostal("1234"));
 		assertTrue(Cas.validateCodePostal("12345"));
 		assertTrue(Cas.validateCodePostal("00000")); 
@@ -55,7 +55,7 @@ public class CasTest {
 	}
 	
 	@Test public void testAdresse() {
-		// adresse de minimum 8 charactére et maximum 25 charactére
+		// adresse de minimum 8 charactere et maximum 25 charactere
 		assertTrue(Cas.validateAdresse("1 rue dupont"));
 		assertTrue(Cas.validateAdresse("8 bis imp. Marie-Antoinette"));
 		assertFalse(Cas.validateAdresse(null));

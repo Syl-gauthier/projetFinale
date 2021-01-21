@@ -32,7 +32,7 @@ public class Connecteur {
       e.printStackTrace();
     }
     connection = c;
-    System.out.println("connexion établie =)");
+    System.out.println("connexion etablie =)");
   }
   
   public static Connecteur instance() {

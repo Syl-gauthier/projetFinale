@@ -1,0 +1,22 @@
+<project>
+	<target name="clean">
+		<delete dir="build"/>
+	</target>
+	<target name="compile">
+		<mkdir dir="build" />
+		<javac destdir="build" srcdir="src/model;src/exceptions;src/utils" classpath="C:\Program Files\eclipse\plugins\org.junit_4.13.0.v20200204-1500.jar;C:\Program Files\eclipse\plugins\org.hamcrest.core_1.3.0.v20180420-1519.jar" />
+	</target>
+	<target name="tests" depends="compile">
+		<junit>
+			<classpath>
+				<pathelement location="C:\Program Files\eclipse\plugins\org.junit_4.13.0.v20200204-1500.jar" />
+				<pathelement location="C:\Program Files\eclipse\plugins\org.hamcrest.core_1.3.0.v20180420-1519.jar" />
+				<pathelement location="${basedir}\build" />
+			</classpath>
+			<formatter type="xml" />
+			<test name="model.CasTest" outfile="resultCas" />
+			<test name="model.AdminTest" outfile="resultAdmin" />
+			<test name="utils.DateTest" outfile="resultDate" />
+		</junit>
+	</target>
+</project>
