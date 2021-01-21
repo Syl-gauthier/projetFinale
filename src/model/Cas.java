@@ -76,7 +76,7 @@ public class Cas {
 	// validation
 	public static boolean validateNom(String nom) {
 		if (nom == null) return false;
-		return Pattern.compile("^[a-z-]+\s[a-z-]+$", Pattern.CASE_INSENSITIVE).matcher(nom).matches();
+		return Pattern.compile("^[a-z-]+ [a-z-]+$", Pattern.CASE_INSENSITIVE).matcher(nom).matches();
 	}
 
 	public static boolean validateCodePostal(String code) {
