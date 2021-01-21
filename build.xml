@@ -1,22 +1,58 @@
-<project>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns:jacoco="antlib:org.jacoco.ant">
+	<taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
+		<classpath>
+			<pathelement location="${user.home}\.m2\repository\org\jacoco\org.jacoco.ant\0.8.6\org.jacoco.ant-0.8.6.jar" />
+			<pathelement location="${user.home}\.m2\repository\org\jacoco\org.jacoco.core\0.8.6\org.jacoco.core-0.8.6.jar" />
+			<pathelement location="${user.home}\.m2\repository\org\jacoco\org.jacoco.report\0.8.6\org.jacoco.report-0.8.6.jar" />
+			<pathelement location="${user.home}\.m2\repository\org\jacoco\org.jacoco.agent\0.8.6\org.jacoco.agent-0.8.6.jar" />
+			<pathelement location="${user.home}\.m2\repository\org\ow2\asm\asm\8.0.1\asm-8.0.1.jar" />
+			<pathelement location="${user.home}\.m2\repository\org\ow2\asm\asm-tree\8.0.1\asm-tree-8.0.1.jar" />
+			<pathelement location="${user.home}\.m2\repository\org\ow2\asm\asm-commons\8.0.1\asm-commons-8.0.1.jar" />
+		</classpath>
+	</taskdef>
 	<target name="clean">
-		<delete dir="build"/>
+		<delete dir="build" />
 	</target>
 	<target name="compile">
 		<mkdir dir="build" />
 		<javac destdir="build" srcdir="src/model;src/exceptions;src/utils" classpath="${user.home}\.m2\repository\junit\junit\4.13.1\junit-4.13.1.jar;${user.home}\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar" />
 	</target>
 	<target name="tests" depends="compile">
-		<junit>
-			<classpath>
-				<pathelement location="${user.home}\.m2\repository\junit\junit\4.13.1\junit-4.13.1.jar" />
-				<pathelement location="${user.home}\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar" />
-				<pathelement location="${basedir}\build" />
-			</classpath>
-			<formatter type="xml" />
-			<test name="model.CasTest" outfile="resultCas" />
-			<test name="model.AdminTest" outfile="resultAdmin" />
-			<test name="utils.DateTest" outfile="resultDate" />
-		</junit>
+		<jacoco:coverage destfile="reportCoverage">
+			<junit fork="true" forkmode="once">
+				<classpath>
+					<pathelement location="${user.home}\.m2\repository\junit\junit\4.13.1\junit-4.13.1.jar" />
+					<pathelement location="${user.home}\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar" />
+					<pathelement location="${basedir}\build" />
+				</classpath>
+				<formatter type="xml" />
+				<test name="model.CasTest" outfile="resultCas" />
+				<test name="model.AdminTest" outfile="resultAdmin" />
+				<test name="utils.DateTest" outfile="resultDate" />
+			</junit>
+		</jacoco:coverage>
+	</target>
+	<target name="report" depends="tests">
+		<jacoco:report>
+			<executiondata>
+				<file file="reportCoverage" />
+			</executiondata>
+			<structure name="coverage">
+				<classfiles>
+					<fileset dir="build">
+						<exclude name="dao/*.class" />
+						<exclude name="controler/*.class" />
+					</fileset>
+				</classfiles>
+				<sourcefiles encoding="UTF-8">
+					<fileset dir="src">
+						<exclude name="dao/*.class" />
+						<exclude name="controler/*.class" />
+					</fileset>
+				</sourcefiles>
+			</structure>
+			<xml destfile="coverage.xml" />
+		</jacoco:report>
 	</target>
 </project>
