@@ -12,11 +12,11 @@
 		</classpath>
 	</taskdef>
 	<target name="clean">
-		<delete dir="build" />
+		<delete dir="build-ant" />
 	</target>
 	<target name="compile">
-		<mkdir dir="build" />
-		<javac destdir="build" srcdir="src/model;src/exceptions;src/utils" classpath="${user.home}\.m2\repository\junit\junit\4.13.1\junit-4.13.1.jar;${user.home}\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar" />
+		<mkdir dir="build-ant" />
+		<javac destdir="build-ant" srcdir="src/model;src/exceptions;src/utils" classpath="${user.home}\.m2\repository\junit\junit\4.13.1\junit-4.13.1.jar;${user.home}\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar" />
 	</target>
 	<target name="tests" depends="compile">
 		<jacoco:coverage destfile="reportCoverage">
@@ -24,7 +24,7 @@
 				<classpath>
 					<pathelement location="${user.home}\.m2\repository\junit\junit\4.13.1\junit-4.13.1.jar" />
 					<pathelement location="${user.home}\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar" />
-					<pathelement location="${basedir}\build" />
+					<pathelement location="${basedir}\build-ant" />
 				</classpath>
 				<formatter type="xml" />
 				<test name="model.CasTest" outfile="resultCas" />
@@ -40,7 +40,7 @@
 			</executiondata>
 			<structure name="coverage">
 				<classfiles>
-					<fileset dir="build">
+					<fileset dir="build-ant">
 						<exclude name="dao/*.class" />
 						<exclude name="controler/*.class" />
 					</fileset>
