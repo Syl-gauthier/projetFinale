@@ -40,7 +40,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.49</version>
+			<version>8.0.23</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
@@ -49,10 +49,10 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-		    <groupId>org.jacoco</groupId>
-		    <artifactId>org.jacoco.ant</artifactId>
-		    <version>0.8.6</version>
-		    <scope>test</scope>
+			<groupId>org.jacoco</groupId>
+			<artifactId>org.jacoco.ant</artifactId>
+			<version>0.8.6</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 </project>

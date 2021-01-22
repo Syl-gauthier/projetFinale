@@ -2,7 +2,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import com.mysql.jdbc.Driver;
+
 
 public class Connecteur {
   private static final String URL = "jdbc:mysql://localhost/";
@@ -20,11 +20,11 @@ public class Connecteur {
     super();
     Connection c = null;
     try {
-      Class.forName("com.mysql.jdbc.Driver");
-    } catch (ClassNotFoundException e) {
-      System.out.println("Driver introuvable !!! ");
-      e.printStackTrace();
-    }
+		Class.forName("com.mysql.cj.jdbc.Driver");
+	} catch (ClassNotFoundException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
     try {
       c = DriverManager.getConnection(URL + DBNAME, LOGIN, PASSWORD);     
     } catch (SQLException e) {
@@ -32,7 +32,7 @@ public class Connecteur {
       e.printStackTrace();
     }
     connection = c;
-    System.out.println("connexion etablie =)");
+    System.out.println("connexion établie =)");
   }
   
   public static Connecteur instance() {

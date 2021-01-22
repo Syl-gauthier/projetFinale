@@ -15,9 +15,13 @@ import model.Cas;
 import model.TestPcr;
 
 public class ManageDB {
-	private final static Connection conn = Connecteur.instance().getConnection();
+	private static Connection conn;
 	private static ManageDB m;
-
+	
+	private ManageDB () {
+		if (conn == null) conn = Connecteur.instance().getConnection();
+	}
+	
 	public static ManageDB instance() {
 		if (ManageDB.m == null)
 			ManageDB.m = new ManageDB();
